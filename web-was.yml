@@ -16,8 +16,8 @@
                                   Allow from all
                           </Proxy>
 
-                          ProxyPass / http://10.178.0.179:8080/      
-                          ProxyPassReverse / http://10.178.0.179:8080/
+                          ProxyPass / http://10.178.0.105:8080/      
+                          ProxyPassReverse / http://10.178.0.105:8080/
                     state: present
           - name: proxy module start
             shell:
@@ -184,7 +184,10 @@
                     cmd: ./mvnw tomcat7:deploy
                     chdir: /home/bespin/petclinic_btc/
             ignore_errors: yes
-          - name: tomcat restart
+            notify: restart_tomcat
+  handlers:          
+          - name: restart_tomcat
             service:
                     name: tomcat
                     state: restarted
+                    enabled: yes
