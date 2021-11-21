@@ -127,6 +127,7 @@
             blockinfile:
                     path: /opt/tomcat/latest/conf/tomcat-users.xml
                     insertbefore: "</tomcat-users>"
+                    marker: " "
                     block: |
                             <role rolename="manager-script"/>
                             <role rolename="manager-gui"/>
